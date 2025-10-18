@@ -53,10 +53,10 @@ export default function DebugPage() {
       <Paper sx={{ p: 3, mt: 2 }}>
         <Typography variant="h6">Instructions:</Typography>
         <Typography>1. Open browser console (F12)</Typography>
-        <Typography>2. Click "Start Editing" button</Typography>
+        <Typography>2. Click &quot;Start Editing&quot; button</Typography>
         <Typography>3. Check console logs</Typography>
-        <Typography>4. Watch "Is Editing" field change to YES</Typography>
-        <Typography>5. If it doesn't work, clear localStorage and refresh</Typography>
+        <Typography>4. Watch &quot;Is Editing&quot; field change to YES</Typography>
+        <Typography>5. If it doesn&apos;t work, clear localStorage and refresh</Typography>
       </Paper>
     </Box>
   );

@@ -8,27 +8,14 @@ const defaultColumns: Column[] = [
   { id: 'role', label: 'Role', visible: true, order: 3, type: 'string' },
 ];
 
-const sampleData: TableRow[] = [
-  { id: '1', name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer' },
-  { id: '2', name: 'Jane Smith', email: 'jane@example.com', age: 32, role: 'Designer' },
-  { id: '3', name: 'Bob Johnson', email: 'bob@example.com', age: 45, role: 'Manager' },
-  { id: '4', name: 'Alice Williams', email: 'alice@example.com', age: 26, role: 'Developer' },
-  { id: '5', name: 'Charlie Brown', email: 'charlie@example.com', age: 35, role: 'Developer' },
-  { id: '6', name: 'Eva Davis', email: 'eva@example.com', age: 29, role: 'Designer' },
-  { id: '7', name: 'Frank Miller', email: 'frank@example.com', age: 41, role: 'Manager' },
-  { id: '8', name: 'Grace Lee', email: 'grace@example.com', age: 27, role: 'Developer' },
-  { id: '9', name: 'Henry Wilson', email: 'henry@example.com', age: 38, role: 'Designer' },
-  { id: '10', name: 'Iris Taylor', email: 'iris@example.com', age: 31, role: 'Developer' },
-];
-
 const initialState: TableState = {
-  rows: sampleData,
+  rows: [], // Start with empty table
   columns: defaultColumns,
   searchQuery: '',
   sortState: { column: null, direction: null },
   page: 0,
   rowsPerPage: 10,
-  editingRows: [], // Changed from Set to array
+  editingRows: [],
   editedData: {},
 };
 
@@ -37,7 +24,10 @@ const tableSlice = createSlice({
   initialState,
   reducers: {
     setRows: (state, action: PayloadAction<TableRow[]>) => {
+      console.log('setRows reducer called with:', action.payload.length, 'rows');
+      console.log('First row sample:', action.payload[0]);
       state.rows = action.payload;
+      console.log('State updated, current rows:', state.rows.length);
     },
     addRow: (state, action: PayloadAction<TableRow>) => {
       state.rows.push(action.payload);
@@ -64,7 +54,8 @@ const tableSlice = createSlice({
       }
     },
     reorderColumns: (state, action: PayloadAction<Column[]>) => {
-      state.columns = action.payload.map((col, index) => ({ ...col, order: index }));
+      // Just update with the provided columns - don't recalculate order
+      state.columns = action.payload;
     },
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;

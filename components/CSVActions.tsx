@@ -19,11 +19,18 @@ export default function CSVActions() {
     const file = event.target.files?.[0];
     if (!file) return;
 
+    console.log('Starting CSV import...');
     try {
       const parsedRows = await parseCSV(file);
+      console.log('Parsed rows:', parsedRows);
+      console.log('Number of rows:', parsedRows.length);
+      
       dispatch(setRows(parsedRows));
+      console.log('Dispatched setRows action');
+      
       setSuccess(`Successfully imported ${parsedRows.length} rows`);
     } catch (error) {
+      console.error('CSV Import error:', error);
       setError(error instanceof Error ? error.message : 'Failed to import CSV');
     } finally {
       if (fileInputRef.current) {
@@ -36,7 +43,8 @@ export default function CSVActions() {
     try {
       exportToCSV(rows, columns);
       setSuccess('CSV exported successfully');
-    } catch (err) {
+    } catch (error) {
+      console.error('Export error:', error);
       setError('Failed to export CSV');
     }
   };

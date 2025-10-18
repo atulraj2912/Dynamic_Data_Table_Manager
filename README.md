@@ -128,8 +128,25 @@ npm start
 1. Click the **"Manage Columns"** button
 2. **Add new columns**: Enter a column name, select type (Text/Number), and click +
 3. **Show/Hide columns**: Use checkboxes to toggle column visibility
-4. **Reorder columns**: Drag and drop columns to reorder them
+4. **Reorder columns**: 
+   - **In Modal**: Drag and drop columns using the drag handle icon
+   - **In Table Header**: Drag any column header directly to reorder (grab the drag indicator icon)
 5. Column preferences are automatically saved
+
+### Column Reordering (Drag & Drop)
+You can reorder columns in two ways:
+
+**Method 1: Table Header (Direct)**
+- Look for the drag indicator icon (⋮⋮) next to each column name
+- Click and drag the drag indicator to reorder columns
+- The column will move smoothly to its new position
+- Changes are saved automatically
+
+**Method 2: Manage Columns Modal**
+- Open "Manage Columns" modal
+- Use the drag handle on the left of each column
+- Drag and drop to reorder
+- Changes apply immediately
 
 ### CSV Import/Export
 

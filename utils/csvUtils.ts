@@ -4,12 +4,18 @@ import { TableRow, Column } from '@/types';
 
 export const parseCSV = (file: File): Promise<TableRow[]> => {
   return new Promise((resolve, reject) => {
+    console.log('Starting CSV parse for file:', file.name);
     Papa.parse(file, {
       header: true,
       dynamicTyping: true,
       skipEmptyLines: true,
       complete: (results) => {
+        console.log('CSV parse complete. Results:', results);
+        console.log('Parsed data count:', results.data.length);
+        console.log('First parsed row:', results.data[0]);
+        
         if (results.errors.length > 0) {
+          console.error('CSV parsing errors:', results.errors);
           reject(new Error(`CSV parsing errors: ${results.errors.map(e => e.message).join(', ')}`));
           return;
         }
@@ -19,9 +25,12 @@ export const parseCSV = (file: File): Promise<TableRow[]> => {
           ...row,
         })) as TableRow[];
 
+        console.log('Transformed rows:', rows);
+        console.log('First transformed row:', rows[0]);
         resolve(rows);
       },
       error: (error) => {
+        console.error('CSV parse error:', error);
         reject(error);
       },
     });

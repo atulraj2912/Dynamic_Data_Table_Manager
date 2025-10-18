@@ -27,11 +27,24 @@ const migrations = {
       },
     };
   },
+  3: (state: any) => {
+    // Clear all hardcoded data - start with empty table
+    console.log('Migration v3: Clearing hardcoded data');
+    return {
+      ...state,
+      table: {
+        ...state.table,
+        rows: [], // Clear all existing rows
+        editingRows: [],
+        editedData: {},
+      },
+    };
+  },
 };
 
 const persistConfig = {
   key: 'root',
-  version: 2, // Bumped version to trigger migration
+  version: 3, // Bumped version to clear hardcoded data
   storage,
   whitelist: ['table', 'theme'],
   migrate: createMigrate(migrations, { debug: true }), // Enable debug to see migration logs
